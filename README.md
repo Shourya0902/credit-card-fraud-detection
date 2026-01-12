@@ -14,6 +14,20 @@ The goal of this project is to predict transaction-level fraud probabilities and
 
 ---
 
+## Dataset
+- 1,000,000 credit card transactions
+- Severe class imbalance: X% fraud rate (typical of real-world fraud detection)
+- Features include transaction amount, location data, merchant category, timestamp, etc.
+
+---
+
+## Technical approach
+- **Imbalanced data**: Applied class weighting in XGBoost to penalize misclassification of rare fraud cases
+- **Evaluation strategy**: Prioritized PR-AUC over ROC-AUC due to severe class imbalance (better reflects performance on minority class)
+- **Threshold tuning**: Analyzed recall vs precision at multiple thresholds to understand operational trade-offs
+
+---
+  
 ## Key outcomes
 
 - Trained an XGBoost-based fraud detection model achieving a **ROC-AUC of 1.00** and **PR-AUC of 0.9997**, indicating strong separation between fraudulent and non-fraudulent transactions on an imbalanced dataset
@@ -42,7 +56,9 @@ The goal of this project is to predict transaction-level fraud probabilities and
 - pandas, numpy  
 - scikit-learn  
 - XGBoost  
-- matplotlib, seaborn  
+- matplotlib, seaborn
+
+Note: The near-perfect ROC-AUC reflects strong feature engineering and relatively clean separation in this dataset. In production scenarios with noisier data and evolving fraud patterns, continuous monitoring and retraining would be essential.
 
 ---
 
